@@ -3,6 +3,7 @@
     package="com.example.testandroid">
 
     <application
+        android:name=".CountryApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +12,9 @@
         android:theme="@style/Theme.TestAndroid">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TestAndroid.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +22,7 @@
             </intent-filter>
         </activity>
     </application>
-    
-    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

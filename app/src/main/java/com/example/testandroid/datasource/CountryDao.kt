@@ -1,19 +1,22 @@
-package com.example.testandroid.database
+package com.example.testandroid.datasource
+
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.testandroid.data.remote.models.Country
+import com.example.testandroid.data.models.Country
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
 interface CountryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun setCountries (countries : List<Country>)
+    suspend fun insertCountries(countries : List<Country>)
+
 
     @Query("SELECT * FROM country")
-    fun getCountries() : LiveData<List<Country>>
+    fun getCountries() : Flow<List<Country>>
 }

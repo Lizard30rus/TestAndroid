@@ -23,7 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.testandroid.data.remote.models.Country
+import com.example.testandroid.data.models.Country
 
 @Composable
 fun CountryListScreen(
@@ -35,7 +35,7 @@ fun CountryListScreen(
     ) {
         Column() {
             Spacer(modifier = Modifier.height(20.dp))
-        }
+
         SearchBar(
             hint = "Search...",
             modifier = Modifier
@@ -44,6 +44,7 @@ fun CountryListScreen(
         )
         Spacer(modifier = Modifier.height(25.dp))
         CountryList(navController = navController)
+        }
     }
 }
 
@@ -103,7 +104,7 @@ fun SearchBar(
 
 @Composable
 fun CountryItem(
-    country : Country,
+    country: Country,
     navController: NavController,
     modifier: Modifier = Modifier,
 ) {
@@ -126,13 +127,6 @@ fun CountryItem(
         Spacer(modifier = Modifier.padding(vertical = 4.dp))
 
         Text(text = "Slug: ${country.slug}",
-            fontSize = 20.sp,
-            textAlign = TextAlign.Start,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.padding(vertical = 4.dp))
-
-        Text(text = "ISO2: ${country.ISO2}",
             fontSize = 20.sp,
             textAlign = TextAlign.Start,
             modifier = Modifier.fillMaxWidth()

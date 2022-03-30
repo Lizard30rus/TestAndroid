@@ -12,10 +12,10 @@ interface WebDataSource{
     @GET ("countries")
     suspend fun updateCountries() : List<CountryDTI>
 
-    @GET ("live/country/{countryName}/status/confirmed")
+    @GET ("country/{countryName}from={firstDate}T00:00:00Z&to={lastDate}T00:00:00Z")
     suspend fun getCountryDetail(
         @Path ("countryName") countryName: String,
-    firstDate: Date,
-    lastDate : Date)
-    : List<CountryDetailDTI>
+        @Path ("firstDate") firstDate: String,
+        @Path ("lastDate") lastDate: String
+    ) : List<CountryDetailDTI>
 }

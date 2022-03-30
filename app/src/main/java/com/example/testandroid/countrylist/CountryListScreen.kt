@@ -37,7 +37,7 @@ fun CountryListScreen(
             Spacer(modifier = Modifier.height(20.dp))
 
         SearchBar(
-            hint = "Search...",
+            hint = "",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
@@ -53,10 +53,8 @@ fun CountryList(
     navController: NavController,
     viewModel: CountryListViewModel = hiltViewModel()
 ) {
-    val countryList by remember {
-        viewModel.countryList
-    }
-    LazyColumn(/*contentPadding = PaddingValues(16.dp)*/) {
+    val countryList = viewModel.countryList.value
+    LazyColumn(contentPadding = PaddingValues(16.dp)) {
         items(countryList.size) {
             CountryItem(country = countryList[it], navController = navController)
         }

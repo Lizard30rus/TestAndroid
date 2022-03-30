@@ -6,6 +6,7 @@ import com.example.testandroid.Constants.BASE_URL
 import com.example.testandroid.datasource.CountryDao
 import com.example.testandroid.datasource.DbDataSource
 import com.example.testandroid.datasource.WebDataSource
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,8 +24,9 @@ class DataSourceModel {
     @Singleton
     @Provides
     fun provideWebDataSource() : WebDataSource {
+        val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").create()
         return Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(BASE_URL)
             .build()
             .create(WebDataSource::class.java)

@@ -7,6 +7,7 @@ import com.example.testandroid.data.models.Country
 import com.example.testandroid.data.models.CountryDTI
 import com.example.testandroid.repository.CountryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,16 +21,17 @@ class CountryListViewModel @Inject constructor(
     var countryList = mutableStateOf<List<Country>>(listOf())
 
     init {
-        updateCountries()
+        viewModelScope.launch {
+            updateCountries()
+            delay(5000L)
+            countryRepositoryImpl.getCountries().collect {
+                countryList.value = it
+            }
+        }
     }
 
-   private fun updateCountries() {
-        viewModelScope.launch {
-           countryList.value = countryRepositoryImpl.updateCountries()
-            /*countryRepositoryImpl.getCountries().collect {
-                countryList.value = it
-            }*/
-        }
+   private suspend fun updateCountries() {
+       countryRepositoryImpl.updateCountries()
    }
 
 }

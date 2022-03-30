@@ -15,5 +15,5 @@ data class CountryDetail(
     val deaths : String,
     val recovered : String,
     val active : String,
-    //val date : Date
+    val date : Date
 )

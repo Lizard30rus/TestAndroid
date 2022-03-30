@@ -13,5 +13,5 @@ data class CountryDetailDTI(
     @SerializedName ("Deaths") val deaths : String,
     @SerializedName ("Recovered") val recovered : String,
     @SerializedName ("Active") val active : String,
-    //@SerializedName ("Date") val date : Date
+    @SerializedName ("Date") val date : Date
 )

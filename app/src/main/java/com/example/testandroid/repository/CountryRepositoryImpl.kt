@@ -36,12 +36,12 @@ class CountryRepositoryImpl @Inject constructor(
 
     @SuppressLint("NewApi")
     override suspend fun getCountryDetail(
-        countryName: String,
-        firstDate: String,
+        countrySlug: String,
+        firstDate:String,
         lastDate: String
     ): List<CountryDetailDTI> {
 
-        val result = webDataSource.getCountryDetail(countryName, firstDate, lastDate)
+        val result = webDataSource.getCountryDetail(countrySlug, firstDate, lastDate)
         return result
     }
 }

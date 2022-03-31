@@ -27,7 +27,8 @@ import com.example.testandroid.data.models.Country
 
 @Composable
 fun CountryListScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: CountryListViewModel = hiltViewModel()
 ) {
     Surface(
         color = MaterialTheme.colors.background,
@@ -41,7 +42,9 @@ fun CountryListScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-        )
+        ) {
+            viewModel.searchCountryList(it)
+        }
         Spacer(modifier = Modifier.height(25.dp))
         CountryList(navController = navController)
         }
@@ -53,7 +56,9 @@ fun CountryList(
     navController: NavController,
     viewModel: CountryListViewModel = hiltViewModel()
 ) {
-    val countryList = viewModel.countryList.value
+    val countryList by remember { viewModel.countryList }
+    val isSearching by remember { viewModel.isSearching }
+
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
         items(countryList.size) {
             CountryItem(country = countryList[it], navController = navController)

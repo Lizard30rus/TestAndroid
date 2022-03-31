@@ -1,6 +1,7 @@
 package com.example.testandroid.countridetaillist
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,12 +22,12 @@ class CountrydetailViewModel @Inject constructor(
 ) : ViewModel() {
 
     @SuppressLint("NewApi")
-    suspend fun getCountryDetail(countryName : String) : List<CountryDetailDTI>{
+    suspend fun getCountryDetail(countrySlug : String) : List<CountryDetailDTI>{
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val today = LocalDateTime.now().format(formatter)
         val twoWeeksAgo = LocalDateTime.now().minusWeeks(2L).format(formatter)
-        return countryRepositoryImpl.getCountryDetail(countryName, today, twoWeeksAgo )
+        return countryRepositoryImpl.getCountryDetail(countrySlug, today, twoWeeksAgo )
     }
 
 }

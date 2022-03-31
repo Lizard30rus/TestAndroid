@@ -9,7 +9,7 @@ import java.util.*
  */
 data class CountryDetailDTI(
     @SerializedName ("Country") val countryName : String,
-    @SerializedName ("Confirmed") val counfirmed : String,
+    @SerializedName ("Confirmed") val confirmed : String,
     @SerializedName ("Deaths") val deaths : String,
     @SerializedName ("Recovered") val recovered : String,
     @SerializedName ("Active") val active : String,

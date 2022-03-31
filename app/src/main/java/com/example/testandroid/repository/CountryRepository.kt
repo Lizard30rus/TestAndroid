@@ -24,7 +24,7 @@ interface CountryRepository {
      * Получение списка дат с детальным описанием заболеваемости
      */
     suspend fun getCountryDetail(
-        countryName : String,
+        countrySlug: String,
         firstDate : String,
         lastDate: String)
     : List<CountryDetailDTI>

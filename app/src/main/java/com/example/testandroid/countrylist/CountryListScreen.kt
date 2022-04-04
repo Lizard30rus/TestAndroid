@@ -56,8 +56,8 @@ fun CountryList(
     navController: NavController,
     viewModel: CountryListViewModel = hiltViewModel()
 ) {
-    val countryList by remember { viewModel.countryList }
-    val isSearching by remember { viewModel.isSearching }
+    val countryList by viewModel.countryList.collectAsState()
+    val isSearching by viewModel.isSearching.collectAsState()
 
     LazyColumn(contentPadding = PaddingValues(16.dp)) {
         items(countryList.size) {
@@ -93,12 +93,10 @@ fun SearchBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .shadow(5.dp, CircleShape)
-                .background(Color.LightGray, CircleShape)
                 .padding(horizontal = 16.dp, vertical = 12.dp)
         )
         if (isHintDisplayed) {
             Text(text = hint,
-            color = Color.DarkGray,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
             )
         }
@@ -115,7 +113,6 @@ fun CountryItem(
     Column(modifier = Modifier
         .fillMaxWidth()
         .clip(RoundedCornerShape(10.dp))
-        .background(color = Color.LightGray)
         .padding(vertical = 16.dp)
         .clickable {
             navController.navigate("country_detail_screen/${country.countryName}")

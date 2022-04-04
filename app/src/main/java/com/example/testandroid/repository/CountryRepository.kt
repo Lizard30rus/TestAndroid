@@ -1,9 +1,8 @@
 package com.example.testandroid.repository
 
 import com.example.testandroid.data.models.Country
-import com.example.testandroid.data.models.CountryDetailDTI
+import com.example.testandroid.data.models.CountryDetailDTOI
 import kotlinx.coroutines.flow.Flow
-import java.util.*
 
 interface CountryRepository {
 
@@ -27,5 +26,5 @@ interface CountryRepository {
         countrySlug: String,
         firstDate : String,
         lastDate: String)
-    : List<CountryDetailDTI>
+    : List<CountryDetailDTOI>
 }

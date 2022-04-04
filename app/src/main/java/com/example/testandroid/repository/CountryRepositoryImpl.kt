@@ -1,15 +1,12 @@
 package com.example.testandroid.repository
 
 import android.annotation.SuppressLint
-import com.cesarferreira.tempo.Tempo
+import com.example.testandroid.Response
 import com.example.testandroid.data.models.Country
-import com.example.testandroid.data.models.CountryDetailDTI
+import com.example.testandroid.data.models.CountryDetailDTOI
 import com.example.testandroid.datasource.CountryDao
 import com.example.testandroid.datasource.WebDataSource
 import kotlinx.coroutines.flow.Flow
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 import javax.inject.Inject
 
 class CountryRepositoryImpl @Inject constructor(
@@ -31,15 +28,16 @@ class CountryRepositoryImpl @Inject constructor(
     }
 
     override fun getCountries(): Flow<List<Country>> {
+
         return countryDao.getCountries()
     }
 
     @SuppressLint("NewApi")
     override suspend fun getCountryDetail(
-        countrySlug: String,
-        firstDate:String,
-        lastDate: String
-    ): List<CountryDetailDTI> {
+        countrySlug : String,
+        firstDate : String,
+        lastDate : String
+    ): List<CountryDetailDTOI> {
 
         val result = webDataSource.getCountryDetail(countrySlug, firstDate, lastDate)
         return result

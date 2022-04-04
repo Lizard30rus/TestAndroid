@@ -7,7 +7,7 @@ import java.util.*
 /**
  * модель, заполняемая данными из back, детальная информация по стране
  */
-data class CountryDetailDTI(
+data class CountryDetailDTOI(
     @SerializedName ("Country") val countryName : String,
     @SerializedName ("Confirmed") val confirmed : String,
     @SerializedName ("Deaths") val deaths : String,

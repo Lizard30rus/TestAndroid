@@ -1,6 +1,5 @@
 package com.example.testandroid.countridetaillist
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,17 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.testandroid.countrylist.CountryItem
-import com.example.testandroid.data.models.CountryDetailDTI
+import com.example.testandroid.data.models.CountryDetailDTOI
 
 @Composable
 fun CountryDetailListScreen(
@@ -28,7 +22,7 @@ fun CountryDetailListScreen(
     viewModel: CountrydetailViewModel = hiltViewModel()
 ) {
 
-    val countryDetail = produceState(initialValue = listOf<CountryDetailDTI>() ) {
+    val countryDetail = produceState(initialValue = listOf<CountryDetailDTOI>() ) {
         value = viewModel.getCountryDetail(countryName)
     }
     Column() {
@@ -51,13 +45,12 @@ fun CountryDetailListScreen(
 
 @Composable
 fun CountryDetailItem(
-    countryDetail: CountryDetailDTI,
+    countryDetail: CountryDetailDTOI,
     navController: NavController
 ) {
     Column( modifier = Modifier
         .fillMaxWidth()
         .clip(RoundedCornerShape(10.dp))
-        .background(color = Color.LightGray)
         .padding(vertical = 16.dp)) {
         Text(
             text = "Date: ${countryDetail.date}",

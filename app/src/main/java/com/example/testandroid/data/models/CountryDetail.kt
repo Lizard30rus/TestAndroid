@@ -11,7 +11,7 @@ import java.util.*
 @Entity
 data class CountryDetail(
     @PrimaryKey val countryName : String,
-    val counfirmed : String,
+    val confirmed : String,
     val deaths : String,
     val recovered : String,
     val active : String,

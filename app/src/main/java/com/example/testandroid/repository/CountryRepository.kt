@@ -1,6 +1,8 @@
 package com.example.testandroid.repository
 
+import com.example.testandroid.Response
 import com.example.testandroid.data.models.Country
+import com.example.testandroid.data.models.CountryDetail
 import com.example.testandroid.data.models.CountryDetailDTOI
 import kotlinx.coroutines.flow.Flow
 
@@ -16,7 +18,7 @@ interface CountryRepository {
     /**
      * Подписываемся на список стран с БД
      */
-    fun getCountries() : Flow<List<Country>>
+    fun getCountries() : Response<Flow<List<Country>>>
 
 
     /**
@@ -26,5 +28,5 @@ interface CountryRepository {
         countrySlug: String,
         firstDate : String,
         lastDate: String)
-    : List<CountryDetailDTOI>
+    : Response<List<CountryDetail>>
 }

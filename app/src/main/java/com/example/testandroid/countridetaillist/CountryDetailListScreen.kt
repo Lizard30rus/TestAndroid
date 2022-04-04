@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.testandroid.data.models.CountryDetailDTOI
+import com.example.testandroid.data.models.CountryDetail
 
 @Composable
 fun CountryDetailListScreen(
@@ -22,7 +22,7 @@ fun CountryDetailListScreen(
     viewModel: CountrydetailViewModel = hiltViewModel()
 ) {
 
-    val countryDetail = produceState(initialValue = listOf<CountryDetailDTOI>() ) {
+    val countryDetail = produceState(initialValue = listOf<CountryDetail>() ) {
         value = viewModel.getCountryDetail(countryName)
     }
     Column() {
@@ -45,7 +45,7 @@ fun CountryDetailListScreen(
 
 @Composable
 fun CountryDetailItem(
-    countryDetail: CountryDetailDTOI,
+    countryDetail: CountryDetail,
     navController: NavController
 ) {
     Column( modifier = Modifier

@@ -1,19 +1,21 @@
 package com.example.testandroid.countrylist
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.testandroid.Response
 import com.example.testandroid.data.models.Country
 import com.example.testandroid.repository.CountryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 
+@SuppressLint("LogNotTimber")
 @HiltViewModel
 class CountryListViewModel @Inject constructor(
     private val countryRepository: CountryRepository
@@ -30,13 +32,16 @@ class CountryListViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             updateCountries()
-            countryRepository.getCountries()
-                .catch {
-                        cause: Throwable ->
-                   println("Ошибка при инициализации списка стран: ${cause.message}")
+            val result = countryRepository.getCountries()
+            when (result) {
+                is Response.Success -> {
+                    result.data.collect{
+                        _countryList.value = it
+                    }
                 }
-                .collect{
-                    _countryList.value = it
+                is Response.Error -> {
+                    Log.e("Exception", "${result.error.message}", result.error)
+                }
             }
         }
     }
